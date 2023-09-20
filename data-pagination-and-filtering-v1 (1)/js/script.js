@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
  const itemsPerPage = 9;
+ //loading the items per page as well as the array into the browser
  
  function showPage(list, page) {
    const startIndex = (page - 1) * itemsPerPage;
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function(){
        </div>
      `;
      studentList.appendChild(studentItem);
+//Creates the different classes as well as condition so that they register when webpage is launched
    }
  }
  
@@ -54,3 +56,4 @@ document.addEventListener('DOMContentLoaded', function(){
  addPagination(data);
    }
 );
+//loads webpage from and refers to data.js tab element
