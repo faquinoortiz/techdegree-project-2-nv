@@ -1,30 +1,57 @@
-/*
-Treehouse Techdegree:
-FSJS Project 2 - Data Pagination and Filtering
-*/
 
+ console.log(data);
+ const itemsPerPage = 9;
+ 
+ function showPage(list, page) {
+   const startIndex = (page - 1) * itemsPerPage;
+   const endIndex = page * itemsPerPage;
+   const studentList = document.querySelector('.student-list');
+   studentList.innerHTML = '';
+ 
+   for (let i = startIndex; i < endIndex && i < list.length; i++) {
+     const student = list[i];
+     const studentItem = document.createElement('li');
+     studentItem.className = 'student-item cf';
+     studentItem.innerHTML = `
+       <div class="student-details">
+         <img class="avatar" src="${student.picture.medium}" alt="Profile Picture">
+         <h3>${student.name.first} ${student.name.last}</h3>
+         <span class="email">${student.email}</span>
+       </div>
+       <div class="joined-details">
+         <span class="date">Joined ${student.registered.date}</span>
+       </div>
+     `;
+     studentList.appendChild(studentItem);
+   }
+ }
+ 
 
-
-/*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
-   Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
-*/
-
-
-
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
-*/
-
-
-
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
-
-
-
-// Call functions
+ function addPagination(list) {
+   const numOfPages = Math.ceil(list.length / itemsPerPage);
+   const linkList = document.querySelector('.link-list');
+   linkList.innerHTML = '';
+ 
+   for (let i = 1; i <= numOfPages; i++) {
+     const listItem = document.createElement('li');
+     listItem.innerHTML = `<button type="button">${i}</button>`;
+     linkList.appendChild(listItem);
+   }
+ 
+   const firstButton = linkList.querySelector('button');
+   firstButton.className = 'active';
+ 
+   linkList.addEventListener('click', (e) => {
+     if (e.target.tagName === 'BUTTON') {
+       const buttons = linkList.querySelectorAll('button');
+       buttons.forEach((button) => {
+         button.className = '';
+       });
+       e.target.className = 'active';
+       showPage(list, e.target.textContent);
+     }
+   });
+ }
+ 
+ showPage(data, 1);
+ addPagination(data);
