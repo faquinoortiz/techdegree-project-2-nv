@@ -1,5 +1,4 @@
-
- console.log(data);
+document.addEventListener('DOMContentLoaded', function(){
  const itemsPerPage = 9;
  
  function showPage(list, page) {
@@ -26,7 +25,6 @@
    }
  }
  
-
  function addPagination(list) {
    const numOfPages = Math.ceil(list.length / itemsPerPage);
    const linkList = document.querySelector('.link-list');
@@ -52,6 +50,7 @@
      }
    });
  }
- 
  showPage(data, 1);
  addPagination(data);
+   }
+);
